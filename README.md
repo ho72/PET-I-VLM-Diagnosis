@@ -2,7 +2,7 @@
 
 <br>
 <div align="center">
-  <img src="mobile/assets/logo_img.png" width="200" alt="PET-I Logo">
+  <img src="mobile/assets/logo_img.png" width="250" alt="PET-I Logo">
 </div>
 <br>
 
