@@ -1,9 +1,11 @@
 # 🐶 PET-I : Vision-Language Model 기반 반려견 안구 질환 조기 진단 솔루션
 
+<br>
 <div align="center">
   <img src="mobile/assets/logo_img.png" width="200" alt="PET-I Logo">
 </div>
 <br>
+
 <div align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
   <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white">
