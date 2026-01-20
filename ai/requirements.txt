@@ -1,0 +1,16 @@
+torch
+torchvision
+transformers
+datasets
+peft
+unsloth
+open_clip_torch
+pandas
+numpy
+scikit-learn
+tqdm
+rich
+pillow
+duckduckgo-search
+wikipedia
+openai

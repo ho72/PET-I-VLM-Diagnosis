@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>PET-I Test Client</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      padding: 40px;
+      color: #333;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #1f8a70;
+      text-align: center;
+    }
+    input[type="file"] {
+      margin-top: 10px;
+    }
+    button {
+      background: #1f8a70;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 15px;
+    }
+    button:hover { background: #166c57; }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>PET-I Backend Test</h2>
+
+    <form id="uploadForm">
+      <label>이미지 파일 선택 (jpg/png):</label><br>
+      <input type="file" id="imageInput" accept="image/*" required><br>
+      <label>Note (선택):</label><br>
+      <input type="text" id="noteInput" placeholder="테스트 메모 (optional)" style="width:100%;"><br>
+      <button type="submit">Upload & Predict</button>
+    </form>
+
+    <h3>결과</h3>
+    <pre id="resultBox">응답 대기 중...</pre>
+  </div>
+
+  <script>
+    const form = document.getElementById('uploadForm');
+    const resultBox = document.getElementById('resultBox');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      resultBox.textContent = "모델 호출 중...";
+
+      const file = document.getElementById('imageInput').files[0];
+      const note = document.getElementById('noteInput').value;
+      if (!file) {
+        alert("이미지를 선택하세요!");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("note", note);
+
+      try {
+        const res = await fetch("http://127.0.0.1:8000/predict", {
+          method: "POST",
+          body: formData
+        });
+        const data = await res.json();
+        resultBox.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        resultBox.textContent = "❌ 오류 발생: " + err;
+      }
+    });
+  </script>
+</body>
+</html>
